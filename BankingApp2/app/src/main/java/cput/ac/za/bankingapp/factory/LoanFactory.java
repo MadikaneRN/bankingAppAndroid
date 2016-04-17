@@ -11,14 +11,16 @@ import java.util.Date;
 public class LoanFactory {
 
 
-
-    public static Loan getLoan(String userId, double loanAmount,double salary,boolean qualify,Date currentDate)
+    public static Loan getLoan(String userId, double loanAmount,double salary,boolean qualify,
+                               Date currentDate,String loanStatus, String loanType)
     {
         Loan myLoan = new Loan.Builder(userId) // change name to conivinient name
                 .loanAmount(loanAmount)
                 .salary(salary)
                 .qualify(qualify)
                 .currentDate(currentDate)
+                .loanStatus(loanStatus)
+                .loanType(loanType)
                 .build();
 
         return myLoan;

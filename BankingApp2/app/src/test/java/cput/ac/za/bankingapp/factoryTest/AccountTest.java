@@ -35,7 +35,7 @@ public class AccountTest {
         Assert.assertEquals(account.getAccountType(),"Savings");
 
     }
-    //not gna use
+
     @Test
     public void testUpdate() throws Exception {
         Account accountUpdate = new Account.Builder(account.getAccNo())// uses accNo as primary key

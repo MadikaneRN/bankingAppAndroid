@@ -26,10 +26,11 @@ public class Loan {
     private double loanAmount;
     @Column(name = "CURRENT_DATE")
     private Date currentDate;
-
+    @Column(name = "LOAN_STATUS")
     private String loanStatus;
-
+    @Column(name = "LOAN_TYPE")
     private String loanType;
+
 
     public Loan(Builder builder) {
 
@@ -39,9 +40,19 @@ public class Loan {
         loanAmount = builder.loanAmount;
         currentDate = builder.currentDate;
         qualify =  builder.qualify;
+        loanStatus = builder.loanStatus;
+        loanType = builder.loanType;
 
     }
 
+
+    public String getLoanStatus() {
+        return loanStatus;
+    }
+
+    public String getLoanType() {
+        return loanType;
+    }
 
     public double getSalary() {
         return salary;
@@ -71,12 +82,26 @@ public class Loan {
         private double loanAmount;
         private Date currentDate;
         private String userId;
+        private String loanStatus;
+        private String loanType;
 
 
 
         public Builder (String userId)
         {
             this.userId = userId; //compalsury
+        }
+
+        public Builder loanStatus(String loanStatus)
+        {
+            this.loanStatus = loanStatus;
+            return this;
+        }
+
+        public Builder loanType(String loanType)
+        {
+            this.loanType = loanType;
+            return this;
         }
 
         public Builder salary(double salary) {
@@ -108,7 +133,8 @@ public class Loan {
             this.loanAmount = loan.getLoanAmount();
             this.salary = loan.getSalary();
             this.qualify = loan.getQualify();
-
+            this.loanType = loan.getLoanType();
+            this.loanStatus = loan.getLoanStatus();
             return this;
         }
 

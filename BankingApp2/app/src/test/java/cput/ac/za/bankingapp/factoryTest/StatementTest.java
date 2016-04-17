@@ -7,6 +7,8 @@ import cput.ac.za.bankingapp.factory.StatementFactory;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -17,11 +19,12 @@ public class StatementTest {
 
 	private Statement statement;
 
+
     @Before
 
     public void setUp() throws Exception {
 
-        statement = StatementFactory.getStatement("Summary",null);
+        statement = StatementFactory.getStatement("Summary","Mon");
 
     }
 
@@ -31,20 +34,21 @@ public class StatementTest {
 
         Assert.assertNotNull(statement);
         Assert.assertEquals(statement.getDetails(), "Summary");
-        //Assert.assertEquals(statement.getWeekandDay(null),null); //deleteTest
+        Assert.assertEquals(statement.getWeekandDay(),"Mon"); //deleteTest
 
 
     }
-    //not gna use
+
+
     @Test
     public void testUpdate() throws Exception {
         Statement statementUpdate = new Statement.Builder("eminem")// uses accNo as primary key
                 .copy(statement)
-				.weekandDay("week44 monday")
+				.weekandDay("Tue")
                 .build();
 
         Assert.assertNotNull(statementUpdate);
-       // Assert.assertEquals(statementUpdate.getweekandDay,"week44 monday");
+        Assert.assertEquals(statementUpdate.getWeekandDay(),"Tue");
 
 
     }

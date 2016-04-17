@@ -2,6 +2,8 @@ package cput.ac.za.bankingapp.domain;
 
 import java.util.Date;
 
+import javax.persistence.Embeddable;
+
 /**
  * Created by Scorpian on 2016-04-01.
  */
@@ -9,6 +11,7 @@ import java.util.Date;
 
  //user has a statement, statement by itself // keep statement as entity has relationship with client
 //Theres a Date
+@Embeddable
 public class Statement {
 
 

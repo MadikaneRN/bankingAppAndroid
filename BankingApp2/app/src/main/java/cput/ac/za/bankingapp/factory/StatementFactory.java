@@ -9,10 +9,10 @@ import java.util.Date;
  */
 public class StatementFactory {
 
-    public static Statement getStatement(String details, Date currentDate)
+    public static Statement getStatement(String details, String currentDate)
     {
         Statement myStatement = new Statement.Builder(details)
-                .weekandDay(currentDate.toString())
+                .weekandDay(currentDate)
                 .build();
 
         return myStatement;

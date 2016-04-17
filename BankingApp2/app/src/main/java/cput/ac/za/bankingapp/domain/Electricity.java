@@ -21,6 +21,12 @@ public class Electricity {
     private String supplierName;
 
 
+     @Column(name = "AMOUNT")
+    private double amount;
+    public double getAmount() {
+        return  amount;
+    }
+
 
     public String getSupplierName() {
         return supplierName;
@@ -35,7 +41,7 @@ public class Electricity {
 
         meterNo = builder.meterNo;
         supplierName = builder.supplierName;
-
+        amount = builder.amount;
     }
 
 
@@ -44,7 +50,7 @@ public class Electricity {
 
         private String meterNo;
         private String supplierName;
-
+         private double amount;
 
         public Builder (String meterNo)
         {
@@ -53,6 +59,13 @@ public class Electricity {
 
         public Builder supplierName(String supplierName) {
             this.supplierName = supplierName;
+            return this;
+        }
+
+
+        public Builder amount(double amount)
+        {
+            this.amount = amount;
             return this;
         }
 
@@ -69,6 +82,7 @@ public class Electricity {
         {
             return new Electricity(this);
         }
+
     }
 
 
