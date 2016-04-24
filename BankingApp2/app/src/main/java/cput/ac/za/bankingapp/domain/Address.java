@@ -1,14 +1,17 @@
 package cput.ac.za.bankingapp.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 
 /**
  * Created by Scorpian on 2016-04-01.
  */
 
-@Embeddable
-public class Address {
 
+public class Address implements Serializable{
+
+    private Long id;
     private String streetName;
     private String city;
     private String postalCode;
@@ -16,13 +19,18 @@ public class Address {
 
     public Address(Builder builder) {
 
-
-        streetName = builder.streetName;
-        city = builder.city;
-        postalCode = builder.postalCode;
+        this.id = builder.id;
+        this.streetName = builder.streetName;
+        this.city = builder.city;
+        this.postalCode = builder.postalCode;
 
     }
 
+
+    public Long getId()
+    {
+        return id;
+    }
 
     public String getStreetName() {
         return streetName;
@@ -40,15 +48,22 @@ public class Address {
     public static class Builder {
 
         //Equivalent to setters
+        private Long id;
         private String streetName;
         private String city;
         private String postalCode;
 
 
+        public Builder id(Long value){
+            this.id =value;
+            return this;
+        }
 
-        public Builder (String streetName)
+
+        public Builder streetName(String streetName)
         {
             this.streetName = streetName; //compalsury
+            return this;
         }
 
         public Builder city(String city) {
@@ -65,13 +80,10 @@ public class Address {
 
 
         public Builder copy(Address address){
-
-            this.streetName =address.getStreetName();
-
-            this.city = address.getCity();
-
-            this.postalCode = address.getPostalCode();
-
+            this.id = address.id;
+            this.streetName =address.streetName;
+            this.city = address.city;
+            this.postalCode =address.postalCode;
             return this;
         }
 

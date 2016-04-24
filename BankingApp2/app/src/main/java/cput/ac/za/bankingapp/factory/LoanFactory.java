@@ -14,7 +14,8 @@ public class LoanFactory {
     public static Loan getLoan(String userId, double loanAmount,double salary,boolean qualify,
                                Date currentDate,String loanStatus, String loanType)
     {
-        Loan myLoan = new Loan.Builder(userId) // change name to conivinient name
+        Loan myLoan = new Loan.Builder() // change name to conivinient name
+                .userId(userId)
                 .loanAmount(loanAmount)
                 .salary(salary)
                 .qualify(qualify)

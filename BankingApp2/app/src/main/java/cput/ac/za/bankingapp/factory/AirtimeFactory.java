@@ -11,7 +11,8 @@ public class AirtimeFactory {
 
     public static Airtime getAirtime(String cellphoneNo, String beneficiary, String serviceProvider)
     {
-        Airtime myAirtime = new Airtime.Builder(cellphoneNo) // change name to conivinient name
+        Airtime myAirtime = new Airtime.Builder() // change name to conivinient name
+                .cellphoneNo(cellphoneNo)
                 .beneficiary(beneficiary)
                 .serviceProvider(serviceProvider)
                 .build();

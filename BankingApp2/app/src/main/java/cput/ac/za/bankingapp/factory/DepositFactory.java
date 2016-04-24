@@ -18,7 +18,8 @@ public class DepositFactory {
 
     public static Deposit getDeposit(String depositNo, Account fromAccount,  Account toAccount,double amount)
     {
-        Deposit myDeposit = new Deposit.Builder(depositNo) // change name to conivinient name
+        Deposit myDeposit = new Deposit.Builder() // change name to conivinient name
+                .depositNo(depositNo)
                 .fromAccount(fromAccount)
                 .toAccount(toAccount)
                 .amount(amount)

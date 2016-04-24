@@ -1,5 +1,7 @@
 package cput.ac.za.bankingapp.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,12 +11,10 @@ import javax.persistence.Table;
  * Created by Scorpian on 2016-04-01.
  */
 
-@Entity
-@Table(name = "DEBIT")
-public class Debit {
 
-    @Id
-    @Column(name = "ACC_NO")
+public class Debit implements Serializable{
+
+    private Long id;
     private String accNo;
 
     /** RELATIONSHIPS **/
@@ -23,15 +23,14 @@ public class Debit {
     /** RELATIONSHIPS **/
 
 
-    @Column(name ="AMOUNT")
     private double amount;
 
     public Debit(Builder builder) {
 
-        accNo = builder.accNo;
-        account = builder.account;
-        transferAccount = builder.transferAccount;
-        amount = builder.amount;
+        this.accNo = builder.accNo;
+        this.account = builder.account;
+        this.transferAccount = builder.transferAccount;
+        this.amount = builder.amount;
 
     }
 
@@ -54,6 +53,7 @@ public class Debit {
     public static class Builder {
 
         //Equivalent to setters
+        private Long id;
         private String accNo;
         private Account account;
         private Account transferAccount;
@@ -81,13 +81,11 @@ public class Debit {
     }
 
     public Builder copy(Debit debit){
-
-
-
-        this.accNo = debit.getAccno();
-        this.amount = debit.getAmount();
-        this.transferAccount = debit.getTransferAccount();
-        this.account = debit.getAccount();
+        this.id = debit.id;
+        this.accNo = debit.accNo;
+        this.amount = debit.amount;
+        this.transferAccount = debit.transferAccount;
+        this.account = debit.account;
         return this;
     }
 

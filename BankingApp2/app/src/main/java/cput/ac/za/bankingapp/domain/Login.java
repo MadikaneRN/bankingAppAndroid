@@ -1,27 +1,25 @@
 package cput.ac.za.bankingapp.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.io.Serializable;
+
 
 /**
  * Created by Scorpian on 2016-04-01.
  */
 
-@Entity
-@Table(name ="LOGIN")
-public class Login {
-
-    @Id
-    @Column(name ="USER_NAME")
+public class Login implements Serializable{
+    private Long id;
     private String userName;
-    @Column(name = "PASSWORD")
     private String passWord;
 
 
     public String getUserName() {
         return userName;
+    }
+
+    public Long getId()
+    {
+        return id;
     }
 
     public String getPassWord() {
@@ -30,9 +28,9 @@ public class Login {
 
 
     public Login(Builder builder) {
-
-        userName = builder.userName;
-        passWord = builder.passWord;
+        this.id = builder.id;
+        this.userName = builder.userName;
+        this.passWord = builder.passWord;
 
     }
 
@@ -40,13 +38,21 @@ public class Login {
     public static class Builder {
 
         //Equivalent to setters
+        private Long id;
         private String passWord;
         private String userName;
 
 
-        public Builder (String userName)
+        public Builder id(Long value)
+        {
+            this.id = value;
+            return this;
+        }
+
+        public Builder userName(String userName)
         {
             this.userName = userName; //compalsury
+            return this;
         }
 
         public Builder passWord(String passWord) {
@@ -56,14 +62,15 @@ public class Login {
 
 
         public Builder copy(Login login){
-
-            this.userName =login.getUserName();
-            this.passWord = login.getPassWord();
+            this.id = login.id;
+            this.userName =login.userName;
+            this.passWord = login.passWord;
 
             return this;
         }
 
-        public Login build() {
+        public Login build()
+        {
             return new Login(this);
         }
     }

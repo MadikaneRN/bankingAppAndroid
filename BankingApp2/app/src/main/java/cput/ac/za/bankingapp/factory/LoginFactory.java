@@ -10,7 +10,8 @@ public class LoginFactory {
 
     public static Login getLogin(String userName, String passWord)
     {
-        Login myLogin= new Login.Builder(userName) // change name to conivinient name
+        Login myLogin= new Login.Builder() // change name to conivinient name
+                .userName(userName)
                 .passWord(passWord)
                 .build();
 

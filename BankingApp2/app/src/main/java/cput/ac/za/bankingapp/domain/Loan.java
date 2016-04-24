@@ -1,5 +1,6 @@
 package cput.ac.za.bankingapp.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,37 +12,29 @@ import javax.persistence.Table;
  * Created by Scorpian on 2016-04-01.
  */
 
-@Entity
-@Table(name = "LOAN")
-public class Loan {
 
-    @Id
-    @Column(name = "USER_ID")
+public class Loan implements Serializable{
+
+    private Long id;
     private String userId;
-    @Column(name = "SALARY")
     private double salary;
-    @Column(name = "QUALIFY")
     private boolean qualify;
-    @Column(name ="LOAN_AMOUNT")
     private double loanAmount;
-    @Column(name = "CURRENT_DATE")
     private Date currentDate;
-    @Column(name = "LOAN_STATUS")
     private String loanStatus;
-    @Column(name = "LOAN_TYPE")
     private String loanType;
 
 
     public Loan(Builder builder) {
 
-
-        userId = builder.userId;
-        salary = builder.salary;
-        loanAmount = builder.loanAmount;
-        currentDate = builder.currentDate;
-        qualify =  builder.qualify;
-        loanStatus = builder.loanStatus;
-        loanType = builder.loanType;
+        this.id = builder.id;
+        this.userId = builder.userId;
+        this.salary = builder.salary;
+        this.loanAmount = builder.loanAmount;
+        this.currentDate = builder.currentDate;
+        this.qualify =  builder.qualify;
+        this.loanStatus = builder.loanStatus;
+        this.loanType = builder.loanType;
 
     }
 
@@ -53,30 +46,29 @@ public class Loan {
     public String getLoanType() {
         return loanType;
     }
-
     public double getSalary() {
         return salary;
     }
-
     public boolean getQualify() {
         return qualify;
     }
-
     public double getLoanAmount() {
         return loanAmount;
     }
-
     public Date getCurrentDate() {
         return currentDate;
     }
-
     public String getUserId() {
         return userId;
     }
-
+    public Long id()
+    {
+        return id;
+    }
 
     public static class Builder {
 
+        private Long id;
         private double salary;
         private boolean qualify;
         private double loanAmount;
@@ -87,9 +79,17 @@ public class Loan {
 
 
 
-        public Builder (String userId)
+
+        public Builder id(Long id)
+        {
+            this.id = id;
+            return this;
+        }
+
+        public Builder userId(String userId)
         {
             this.userId = userId; //compalsury
+            return this;
         }
 
         public Builder loanStatus(String loanStatus)
@@ -128,13 +128,14 @@ public class Loan {
 
         public Builder copy(Loan loan){
 
-            this.userId = loan.getUserId();
-            this.currentDate = loan.getCurrentDate();
-            this.loanAmount = loan.getLoanAmount();
-            this.salary = loan.getSalary();
-            this.qualify = loan.getQualify();
-            this.loanType = loan.getLoanType();
-            this.loanStatus = loan.getLoanStatus();
+            this.id = loan.id;
+            this.userId = loan.userId;
+            this.currentDate = loan.currentDate;
+            this.loanAmount = loan.loanAmount;
+            this.salary = loan.salary;
+            this.qualify = loan.qualify;
+            this.loanType = loan.loanType;
+            this.loanStatus = loan.loanStatus;
             return this;
         }
 

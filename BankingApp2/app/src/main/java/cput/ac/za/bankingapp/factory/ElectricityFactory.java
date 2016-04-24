@@ -10,7 +10,8 @@ public class ElectricityFactory {
 
     public static Electricity getElectricity(String meterNo, String supplierName, double amount)
     {
-        Electricity myElectric = new Electricity.Builder(meterNo) // change name to conivinient name
+        Electricity myElectric = new Electricity.Builder() // change name to conivinient name
+                .meterNo(meterNo)
                 .supplierName(supplierName)
                 .amount(amount)
                 .build();

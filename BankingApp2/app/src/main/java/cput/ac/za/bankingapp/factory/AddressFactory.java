@@ -11,7 +11,8 @@ public class AddressFactory {
 
     public static Address getAddress(String streetName, String city, String postalCode)
     {
-        Address myAdress = new Address.Builder(streetName) // change name to conivinient name
+        Address myAdress = new Address.Builder() // change name to conivinient name
+                .streetName(streetName)
                 .city(city)
                 .postalCode(postalCode)
                 .build();

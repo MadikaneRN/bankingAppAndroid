@@ -11,14 +11,18 @@ import cput.ac.za.bankingapp.domain.Account;
 public class AccountFactory {
 
 
+
     public static Account getAccount(String accNo, double balance, String accountType)
     {
-        Account myAccount = new Account.Builder(accNo) // change name to conivinient name
+        Account myAccount = new Account.Builder() // change name to conivinient name
+                .accNo(accNo)
                 .balance(balance)
                 .accountType(accountType)
                 .build();
 
         return myAccount;
     }
+
+
 
 }

@@ -1,5 +1,7 @@
 package cput.ac.za.bankingapp.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,24 +11,21 @@ import javax.persistence.Table;
  * Created by Scorpian on 2016-04-01.
  */
 
-@Entity
-@Table(name = "ELECTRICITY")
-public class Electricity {
 
-    @Id
-    @Column(name ="METER_NO")
+public class Electricity implements Serializable{
+
+    private Long id;
     private String meterNo;
-
-    @Column(name = "SUPPLIER_NAME")
     private String supplierName;
-
-
-     @Column(name = "AMOUNT")
     private double amount;
+
+    public Long getId() {
+        return id;
+    }
+
     public double getAmount() {
         return  amount;
     }
-
 
     public String getSupplierName() {
         return supplierName;
@@ -38,23 +37,32 @@ public class Electricity {
 
 
     public Electricity(Builder builder) {
-
-        meterNo = builder.meterNo;
-        supplierName = builder.supplierName;
-        amount = builder.amount;
+        this.id = builder.id;
+        this.meterNo = builder.meterNo;
+        this.supplierName = builder.supplierName;
+        this.amount = builder.amount;
     }
 
 
 
     public static class Builder {
 
+        private Long id;
         private String meterNo;
         private String supplierName;
          private double amount;
 
-        public Builder (String meterNo)
+
+        public Builder id(Long id)
+        {
+            this.id = id;
+            return this;
+        }
+
+        public Builder meterNo(String meterNo)
         {
             this.meterNo = meterNo; //compalsury
+            return this;
         }
 
         public Builder supplierName(String supplierName) {
@@ -71,9 +79,10 @@ public class Electricity {
 
 
         public Builder copy(Electricity electricity){
-
-            this.supplierName = electricity.getSupplierName();
-            this.meterNo = electricity.getMeterNo();
+            this.id = electricity.id;
+            this.supplierName = electricity.supplierName;
+            this.meterNo = electricity.meterNo;
+            this.amount = electricity.amount;
             return this;
         }
 

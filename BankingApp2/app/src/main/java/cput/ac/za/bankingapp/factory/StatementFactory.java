@@ -11,7 +11,8 @@ public class StatementFactory {
 
     public static Statement getStatement(String details, String currentDate)
     {
-        Statement myStatement = new Statement.Builder(details)
+        Statement myStatement = new Statement.Builder()
+                .details(details)
                 .weekandDay(currentDate)
                 .build();
 

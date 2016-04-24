@@ -2,6 +2,8 @@ package cput.ac.za.bankingapp.domain;
 
 import android.support.annotation.IdRes;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,24 +13,20 @@ import javax.persistence.Table;
  * Created by Scorpian on 2016-04-01.
  */
 
-@Entity
-@Table(name ="AIRTIME")
-public class Airtime {
 
-    @Id
-    @Column(name = "CELLPHONE_NO")
+public class Airtime implements Serializable{
+
+    private Long id;
     private String cellphoneNo;
-    @Column(name= "BENEFECIARY")
     private String beneficiary;
-    @Column(name = "SERVICE_PROVIDER")
     private String serviceProvider;
 
 
     public Airtime(Builder builder) {
-
-        cellphoneNo = builder.cellphoneNo;
-        beneficiary = builder.beneficiary;
-        serviceProvider = builder.serviceProvider;
+        this.id = builder.id;
+        this.cellphoneNo = builder.cellphoneNo;
+        this.beneficiary = builder.beneficiary;
+        this.serviceProvider = builder.serviceProvider;
 
     }
 
@@ -44,18 +42,30 @@ public class Airtime {
         return beneficiary;
     }
 
+    public Long getId()
+    {
+        return id;
+    }
 
     public static class Builder {
 
+        private Long id;
         private String cellphoneNo;
         private String beneficiary;
         private String serviceProvider;
 
 
 
-        public Builder (String cellphoneNo)
+        public Builder id(Long id)
         {
-            this.cellphoneNo = cellphoneNo; //compalsury
+            this.id = id;
+            return this;
+        }
+
+        public Builder cellphoneNo (String cellphoneNo)
+        {
+            this.cellphoneNo = cellphoneNo;
+             return this;//compalsury
         }
 
         public Builder beneficiary(String beneficiary) {
@@ -70,12 +80,11 @@ public class Airtime {
 
 
 
-
         public Builder copy(Airtime airtime){
-
-            this.cellphoneNo = airtime.getCellphoneNo();
-            this.beneficiary = airtime.getBeneficiary();
-            this.serviceProvider = airtime.getServiceProvider();
+            this.id = airtime.id;
+            this.cellphoneNo = airtime.cellphoneNo;
+            this.beneficiary = airtime.beneficiary;
+            this.serviceProvider = airtime.serviceProvider;
             return this;
         }
 

@@ -11,7 +11,8 @@ public class ClientFactory {
 
     public static Client getClient(String idNo, String name, String surName)
     {
-        Client myClient = new Client.Builder(idNo)
+        Client myClient = new Client.Builder()
+                .idNo(idNo)
                 .name(name)
                 .surName(surName)
                 .build();

@@ -2,6 +2,8 @@ package cput.ac.za.bankingapp.domain;
 
 import android.support.annotation.IdRes;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,30 +13,25 @@ import javax.persistence.Table;
  * Created by Scorpian on 2016-04-01.
  */
 
-@Entity
-@Table(name ="DEPOSIT")
-public class Deposit {
+
+public class Deposit implements Serializable{
     //just values processes elsewhere==use same interface as debit
 
-    @Id
-    @Column(name ="DEPOSIT_NO")
+    private Long id;
     private String depositNo;
-
     /***RELATIONSHIPS***/
     private Account fromAccount;
     private Account toAccount;
     /***RELATIONSHIps***/
-
-    @Column(name = "AMOUNT")
     private double amount;
 
 
     public Deposit(Builder builder) {
-
-        depositNo = builder.depositNo;
-        amount = builder.amount;
-        toAccount = builder.toAccount;
-        fromAccount = builder.fromAccount;
+        this.id = builder.id;
+        this.depositNo = builder.depositNo;
+        this.amount = builder.amount;
+        this.toAccount = builder.toAccount;
+        this.fromAccount = builder.fromAccount;
 
     }
 
@@ -56,15 +53,22 @@ public class Deposit {
 
     public static class Builder {
 
+        private Long id;
         private String depositNo;
         private Account fromAccount;
         private Account toAccount;
         private double amount;
 
 
-        public Builder (String depositNo)
+        public Builder id(Long value)
         {
-            this.depositNo = depositNo; //compalsury
+            this.id = value;
+            return this;
+        }
+        public Builder depositNo(String depositNo)
+        {
+            this.depositNo = depositNo;
+             return this;
         }
 
         public Builder fromAccount(Account fromAccount) {
@@ -89,17 +93,17 @@ public class Deposit {
 
 
         public Builder copy(Deposit deposit){
-            this.depositNo =deposit.getDepositNo();
-            this.amount = deposit.getAmount();
-            this.fromAccount = deposit.getFromAccount();
-            this.toAccount = deposit.getToAccount();
+            this.id = deposit.id;
+            this.depositNo =deposit.depositNo;
+            this.amount = deposit.amount;
+            this.fromAccount = deposit.fromAccount;
+            this.toAccount = deposit.toAccount;
             return this;
         }
 
 
 
-        public Deposit build()
-        {
+        public Deposit build() {
             return new Deposit(this);
         }
     }

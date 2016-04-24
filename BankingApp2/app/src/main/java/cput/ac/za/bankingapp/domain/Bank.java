@@ -1,5 +1,7 @@
 package cput.ac.za.bankingapp.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,14 +11,10 @@ import javax.persistence.Table;
  * Created by Scorpian on 2016-04-03.
  */
 
-@Entity
-@Table(name ="BANK")
-public class Bank {
-    @Id
-    @Column(name = "CODE")
-    private String code;
 
-    @Column(name = "NAME")
+public class Bank implements Serializable{
+    private Long id;
+    private String code;
     private String name;
 
 
@@ -28,11 +26,15 @@ public class Bank {
         return code;
     }
 
+    public Long getId()
+    {
+        return  id;
+    }
 
     public Bank(Builder builder) {
-
-        name = builder.name;
-        code = builder.code;
+        this.id = builder.id;
+       this.name = builder.name;
+        this.code = builder.code;
 
     }
 
@@ -40,14 +42,24 @@ public class Bank {
     public static class Builder {
 
         //Equivalent to setters
+        private Long id;
         private String code;
         private String name;
 
 
-        public Builder (String code)
+        public Builder id(Long value)
+        {
+            this.id = value;
+            return this;
+        }
+
+
+        public Builder code(String code)
         {
             this.code = code; //compalsury
+            return this;
         }
+
 
 
         public Builder name(String name) {
@@ -57,10 +69,9 @@ public class Bank {
 
 
         public Builder copy(Bank bank){
-
-            this.name =bank.getName();
-            this.code = bank.getCode();
-
+            this.id = bank.id;
+            this.name =bank.name;
+            this.code = bank.code;
             return this;
         }
 

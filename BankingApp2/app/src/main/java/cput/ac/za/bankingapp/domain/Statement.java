@@ -1,5 +1,6 @@
 package cput.ac.za.bankingapp.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Embeddable;
@@ -11,24 +12,28 @@ import javax.persistence.Embeddable;
 
  //user has a statement, statement by itself // keep statement as entity has relationship with client
 //Theres a Date
-@Embeddable
-public class Statement {
 
+public class Statement implements Serializable{
 
+    private Long id;
     private String details;
 	private String weekandDay;
 	//might have toString of the relevant classes ie loan balance and account;
 
     public Statement(Builder builder) {
-
-        details = builder.details;
-        weekandDay = builder.weekandDay;
+        this.id = builder.id;
+        this.details = builder.details;
+        this.weekandDay = builder.weekandDay;
 
     }
 
-   
-	
-	public String getWeekandDay()
+
+
+    public Long getId()
+    {
+        return id;
+    }
+    public String getWeekandDay()
 	{	
 		return weekandDay;
 	}
@@ -38,15 +43,24 @@ public class Statement {
     public static class Builder {
 
         //Equivalent to setters
+        private Long id;
         private String weekandDay;
         private String details;
 
 
 
-        public Builder (String details)
+        public Builder details(String details)
         {
             this.details = details; //compalsury
+            return this;
         }
+
+        public Builder id(Long value)
+        {
+            this.id = value;
+            return this;
+        }
+
 
         public Builder weekandDay(String weekandDay) {
             this.weekandDay = weekandDay;
@@ -56,9 +70,9 @@ public class Statement {
 
 
         public Builder copy(Statement statement){
-
-            this.details = statement.getDetails();
-            this.weekandDay = statement.getWeekandDay();
+            this.id = statement.id;
+            this.details = statement.details;
+            this.weekandDay = statement.weekandDay;
             return this;
         }
 
