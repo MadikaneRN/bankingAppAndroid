@@ -10,9 +10,9 @@ import cput.ac.za.bankingapp.domain.Account;
 
 public class DebitFactory {
 
-    public static Debit getDebit(String accNo, double amount,Account account, Account transferAccount)
+    public static Debit getDebit(double amount,Account account, Account transferAccount)
     {
-        Debit myDebit = new Debit.Builder(accNo) // change name to conivinient name
+        Debit myDebit = new Debit.Builder() // change name to conivinient name
                 .amount(amount)
                 .account(account)
                 .transferAccount(transferAccount)
@@ -20,9 +20,6 @@ public class DebitFactory {
 
         return myDebit;
     }
-
-
-
 
 
 }

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Debit implements Serializable{
 
     private Long id;
-    private String accNo;
+
 
     /** RELATIONSHIPS **/
     private Account account;
@@ -27,7 +27,7 @@ public class Debit implements Serializable{
 
     public Debit(Builder builder) {
 
-        this.accNo = builder.accNo;
+        this.id = builder.id;
         this.account = builder.account;
         this.transferAccount = builder.transferAccount;
         this.amount = builder.amount;
@@ -36,10 +36,6 @@ public class Debit implements Serializable{
 
     public Account getAccount() {
         return account;
-    }
-
-    public String getAccno() {
-        return accNo;
     }
 
     public Account getTransferAccount() {
@@ -54,15 +50,17 @@ public class Debit implements Serializable{
 
         //Equivalent to setters
         private Long id;
-        private String accNo;
         private Account account;
         private Account transferAccount;
         private double amount;
 
-        public Builder (String accNo)
+
+        public Builder id(Long id)
         {
-            this.accNo =accNo; //compalsury
+            this.id = id;
+            return this;
         }
+
 
     public Builder account(Account account) {
         this.account = account;
@@ -82,7 +80,6 @@ public class Debit implements Serializable{
 
     public Builder copy(Debit debit){
         this.id = debit.id;
-        this.accNo = debit.accNo;
         this.amount = debit.amount;
         this.transferAccount = debit.transferAccount;
         this.account = debit.account;
